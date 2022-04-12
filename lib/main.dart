@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_test_swift_dynamic/calculator.dart';
+import 'package:flutter_application_test_swift_dynamic/calculator/calculator.dart';
 import 'package:flutter_application_test_swift_dynamic/collect_personal_information/collect_personal_information.dart';
-import 'package:flutter_application_test_swift_dynamic/stepper_form.dart';
+import 'package:flutter_application_test_swift_dynamic/provider/information_provider.dart';
+import 'package:flutter_application_test_swift_dynamic/stepper/stepper_form.dart';
 import 'package:flutter_application_test_swift_dynamic/todo_list/to_do_list.dart';
 import 'package:provider/provider.dart';
 
@@ -13,12 +14,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) {
+          return InformationProvider();
+        })
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.purple,
+        ),
+        home: MyHomePage(title: 'Sitanan Phubunkhong'),
       ),
-      home: MyHomePage(title: 'Sitanan Phubunkhong'),
     );
   }
 }
